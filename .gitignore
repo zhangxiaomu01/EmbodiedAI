@@ -1,0 +1,22 @@
+# 缓存（HF_HOME 指向 .cache/huggingface，含 LeRobot 数据集缓存）
+.cache/
+
+# LeRobot 训练与评估输出
+outputs/
+
+# W&B 实验记录（若启用）
+wandb/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# 虚拟环境
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
