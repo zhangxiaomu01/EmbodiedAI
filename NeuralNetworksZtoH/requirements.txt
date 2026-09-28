@@ -1,0 +1,9 @@
+# python 3.11 / torch cu128 (RTX 5080 + 4060Ti 通用)
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+jupyter==1.1.1
+numpy==2.2.6
+matplotlib==3.10.3
+torch==2.7.1+cu128
+# 可选: graphviz==0.20.3  # micrograd 可视化计算图用，需另装系统 Graphviz
