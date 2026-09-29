@@ -15,23 +15,27 @@ conda create -n zero2hero python=3.11 -y
 # 2. 激活
 conda activate zero2hero
 
-# 3. 所有依赖一律用 pip 装（常规库走镜像）
-pip install jupyter numpy matplotlib
-
-# 4. 特例：PyTorch GPU 版必须用官方 CUDA 源（镜像里只有 CPU 版）
-pip install torch --index-url https://download.pytorch.org/whl/cu128
-```
-- 或者通过requirements.txt一键安装所有依赖（已内置 CUDA 源，GPU 版 torch 可直接安装）:
-```
+# 3. 通用依赖：requirements.txt 走清华镜像，跨平台通用（不含 torch）
 pip install -r requirements.txt
+
+# 4. torch 按平台单独装（二选一）:
+#    a. 家里 GPU 机（5080 / 4060Ti）—— 必须用官方 CUDA 源（镜像里没有 GPU 版）:
+pip install torch --index-url https://download.pytorch.org/whl/cu128
+#    b. 云服务器（无 GPU / Linux）—— CPU 版（约 200MB）:
+pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 > torch cu128 轮子约 3GB，来自 download.pytorch.org，国内下载较慢请耐心等待。
 
 ## 安装验证
 ```
+# GPU 机（5080 / 4060Ti）
 python -c "import torch; print(torch.__version__, torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+# 期望输出: 2.7.1+cu128 True <显卡名>
+
+# 云服务器（无 N 卡，False 属正常）
+python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+# 期望输出: 2.7.1+cpu False
 ```
-期望输出: `2.7.1+cu128 True <显卡名>`
 
 ## 使用
 - VS Code 打开 .ipynb 时，右上角内核选择 `zero2hero`
