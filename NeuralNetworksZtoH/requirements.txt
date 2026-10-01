@@ -4,4 +4,5 @@
 jupyter==1.1.1
 numpy==2.2.6
 matplotlib==3.10.3
+nbstripout==0.9.1  # 提交时自动清除 ipynb 输出，需在仓库执行一次 nbstripout --install
 # 可选: graphviz==0.20.3  # micrograd 可视化计算图用，需另装系统 Graphviz
